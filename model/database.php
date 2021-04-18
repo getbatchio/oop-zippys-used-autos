@@ -2,12 +2,16 @@
 
    
 class Database{
-    
-  
-    private static $hostname;
+   
+    private static $url;
+    private static $dbparts;
+ 
     private static $username;
     private static $password;
+    private static $database;
     private static $db;
+    private static $dsn;
+    
 
 
     public function __construct(){
@@ -24,7 +28,7 @@ class Database{
       if (!isset(self::$db)){
                 try {
                     self::$db = new PDO("mysql:host=".self::$dsn.";dbname=".self::$database."",self::$username,self::$password);
-                    //echo 'connection good';
+   
                 } catch (PDOException $e) {
                     $error =$e->getMessage();
                     include('view/error.php');
