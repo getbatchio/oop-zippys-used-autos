@@ -17,7 +17,7 @@ class Database{
 
 
     public function __construct(){
-     self::url = getenv('JAWSDB_URL');
+     self::$url = getenv('JAWSDB_URL');
      self::$dbparts = parse_url($url);
      self::$dsn = $dbparts['host'];
      self::$username = $dbparts['user'];
@@ -30,7 +30,7 @@ class Database{
       if (!isset(self::$db)){
                 try {
                     self::$db = new PDO("mysql:host=".self::$hostname.";dbname=".self::$database,self::$username,self::$password);
-                    //echo 'connection good';
+                    
                 } catch (PDOException $e) {
                     $error =$e->getMessage();
                     include('view/error.php');
