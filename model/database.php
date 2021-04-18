@@ -22,7 +22,7 @@ class Database{
      self::$username = self::$dbparts['user'];
      self::$password = self::$dbparts['pass'];
      self::$database = ltirm(self::$dbparts['path'],'/');
-     self::$dsnsql = 'mysql:host='.self::$dsn.';dbname='.self::$database ;
+     self::$dsnsql = 'mysql:host=' . self::$dsn . ';dbname=' . self::$database ;
 
     }
     public static function getDB(){
@@ -42,6 +42,7 @@ class Database{
 
    
 }
+$database = new Database();
 
 
    
