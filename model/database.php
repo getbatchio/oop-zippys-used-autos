@@ -8,7 +8,7 @@ class Database{
     private static $hostname;
     private static $username;
     private static $password;
-    private static $db;
+    private static $database;
     
 
 
