@@ -8,6 +8,7 @@ class Database{
     private static $username;
     private static $password;
     private static $database;
+    private static $dsn;
     private static $db;
     
 
@@ -23,13 +24,14 @@ class Database{
      self::$username = $dbparts['user'];
      self::$password = $dbparts['pass'];
      self::$database = ltirm($dbparts['path'],'/');
+     self::$dsn = 'mysql:host=' . self::$hostname . ';dbname=' . self::$database;
 
     }
     public static function getDB(){
         
       if (!isset(self::$db)){
                 try {
-                    self::$db = new PDO("mysql:host=self::$hostname;dbname=self::$database",self::$username,self::$password);
+                    self::$db = new PDO(self::$dsn,self::$username,self::$password);
                     
                 } catch (PDOException $e) {
                     $error =$e->getMessage();
