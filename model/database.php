@@ -1,51 +1,26 @@
+
 <?php
-
-   
-class Database{
-   
-    private static $url;
-    private static $dbparts;
- 
-    private static $username;
-    private static $password;
-    private static $database;
+class Database {
+    private static $dsn = 'mysql:host=vkh7buea61avxg07.cbetxkdyhwsb.us-east-1.rds.amazonaws.com;dbname=egnvidxep6ohl0mk';
+    private static $username = 'a7rgpxgomi8vyu3o';
+    private static $password = 'zn5gg89k1uuh7dx7';
     private static $db;
-    private static $dsn;
-    private static $dsnsql;
-    
 
+    private function __construct() {}
 
-    public function __construct(){
-     self::$url = getenv('JAWSDB_URL');
-     self::$dbparts = parse_url(self::$url);
-     self::$dsn = self::$dbparts['host'];
-     self::$username = self::$dbparts['user'];
-     self::$password = self::$dbparts['pass'];
-     self::$database = ltirm(self::$dbparts['path'],'/');
-     self::$dsnsql = 'mysql:host=' . self::$dsn . ';dbname=' . self::$database ;
-
-    }
-    public static function getDB(){
-        
-      if (!isset(self::$db)){
-                try {
-                    self::$db = new PDO(self::$dsnsql,self::$username,self::$password);
-   
-                } catch (PDOException $e) {
-                    $error =$e->getMessage();
-                    include('view/error.php');
-                    exit();
-                } 
+    public static function getDB() {
+        if (!isset(self::$db)){
+            try
+            {
+                self::$db = new PDO(self::$dsn,self::$username,self::$password);
+            } catch (PDOException $e)
+            {
+                $error = "Database error: ";
+                $error = $e -> getMessage();
+                include('view/error.php');
+                exit();
             }
-    return self::$db;
+        }
+        return self::$db;
+    }
 }
-
-   
-}
-$database = new Database();
-
-
-   
-
-
-   
