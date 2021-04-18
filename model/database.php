@@ -17,12 +17,12 @@ class Database{
 
     public function __construct(){
      self::$url = getenv('JAWSDB_URL');
-     self::$dbparts = parse_url($url);
-     self::$dsn = $dbparts['host'];
-     self::$username = $dbparts['user'];
-     self::$password = $dbparts['pass'];
-     self::$database = ltirm($dbparts['path'],'/');
-     self::$dsnsql = 'mysql:host='.$dsn.';dbname='.$database ;
+     self::$dbparts = parse_url(self::$url);
+     self::$dsn = self::$dbparts['host'];
+     self::$username = self::$dbparts['user'];
+     self::$password = self::$dbparts['pass'];
+     self::$database = ltirm(self::$dbparts['path'],'/');
+     self::$dsnsql = 'mysql:host='.self::$dsn.';dbname='.self::$database ;
 
     }
     public static function getDB(){
@@ -43,7 +43,6 @@ class Database{
    
 }
 
-$database = new Database();
 
    
 
