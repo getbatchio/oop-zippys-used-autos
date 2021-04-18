@@ -23,7 +23,7 @@ class Database{
         
       if (!isset(self::$db)){
                 try {
-                    self::$db = new PDO("mysql:host=".self::$hostname.";dbname=".self::$database."",self::$username,self::$password);
+                    self::$db = new PDO("mysql:host=".self::$dsn.";dbname=".self::$database."",self::$username,self::$password);
                     //echo 'connection good';
                 } catch (PDOException $e) {
                     $error =$e->getMessage();
